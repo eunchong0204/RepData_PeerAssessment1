@@ -192,27 +192,14 @@ activity_day$day <- day
 2. Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).  
 
 ```r
-weekday <- activity_day %>%
-        filter(day=="weekday") %>%
-        group_by(interval) %>%
+activity_day_grouped <- activity_day %>%
+        group_by(day, interval) %>%
         summarise(mean=mean(steps, na.rm=TRUE))
-weekend <- activity_day %>%
-        filter(day=="weekend") %>%
-        group_by(interval) %>%
-        summarise(mean=mean(steps, na.rm=TRUE))
-ggplot(weekday, aes(x = interval, y = mean)) +
+ggplot(activity_day_grouped, aes(x=interval, y=mean)) +
         geom_line() +
+        facet_grid(day~.) +
         labs(x = "5-Minute Interval", y = "Average Number of Steps"
-                , title = "Weekday")
+                , title = "Average Number of Steps by day")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
-
-```r
-ggplot(weekend, aes(x = interval, y = mean)) +
-        geom_line() +
-        labs(x = "5-Minute Interval", y = "Average Number of Steps"
-                , title = "weekend")
-```
-
-![](PA1_template_files/figure-html/unnamed-chunk-12-2.png)<!-- -->
