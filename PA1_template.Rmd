@@ -1,11 +1,5 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
-editor_options: 
-  chunk_output_type: console
----
+# "Reproducible Research: Peer Assessment 1"
+
 
 ## Loading the packages
 ```{r , message = FALSE, warning = FALSE}
@@ -45,9 +39,11 @@ ggplot(total_steps, aes(total)) +
 ```{r}
 mean1 <- mean(total_steps$total, na.rm = TRUE)
 median1 <- median(total_steps$total, na.rm = TRUE)
+mean1
+median1
 ```
 
-The mean of the total number of steps taken per day is `r mean1`, and the median is `r median1`.
+The mean of the total number of steps taken per day is 10766.19, and the median is `r median1`.
 
 
 ## What is the average daily activity pattern?  
@@ -66,6 +62,7 @@ ggplot(mean_steps, aes(x = interval, y = mean)) +
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?  
 ```{r}
 max_interval <- mean_steps[which.max(mean_steps$mean), ]$interval
+max_interval
 ```
 
 The 5-minute interval which has the maximum number of steps on average is `r max_interval`.  
@@ -76,6 +73,7 @@ The 5-minute interval which has the maximum number of steps on average is `r max
 1. Calculate and report the total number of missing values in the dataset  
 ```{r}
 nas <- sum(is.na(activity$steps))
+nas
 ```
 
 The total number of missing values is `r nas`.  
@@ -104,9 +102,11 @@ ggplot(total_steps_filled, aes(total)) +
                 , title = "Histogram of the total number of steps in the filled data")
 mean2 <- mean(total_steps_filled$total)
 median2 <- median(total_steps_filled$total)
+mean2
+median2
 ```
 
-The mean of the total number of steps taken per day is `r mean2`, and the median is `r median2`.  
+The mean of the total number of steps taken per day is 10766.19, and the median is 10766.19.  
 
 There is no significant difference because I used the mean of each interval for the missing values.  
 
